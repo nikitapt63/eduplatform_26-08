@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
 from .managers import CustomUserManager
@@ -35,3 +36,37 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
+
+
+class Student(models.Model):
+    rating = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        verbose_name="Рейтинг",
+        default=0,
+    )
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE, verbose_name="Пользователь"
+    )
+
+    def __str__(self):
+        return f"{self.pk} - student {self.user.email}"
+
+    class Meta:
+        verbose_name = "Студенты"
+        verbose_name_plural = "Студенты"
+
+
+class Teacher(models.Model):
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE, verbose_name="Пользователь"
+    )
+    specializations = models.ManyToManyField(
+        "courses.Specialization", verbose_name="Специализации"
+    )
+
+    def __str__(self):
+        return f"{self.pk} - teacher {self.user.email}"
+
+    class Meta:
+        verbose_name = "Преподаватели"
+        verbose_name_plural = "Преподаватели"
