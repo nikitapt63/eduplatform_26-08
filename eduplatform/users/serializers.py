@@ -22,10 +22,23 @@ class TeacherSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class TeacherStudentSerializer(Serializer):
+class TeacherStudentSerializer(ModelSerializer):
     teacher = TeacherSerializer()
     students = StudentSerializer(many=True)
 
     class Meta:
         model = Group
-        fields = "__all__"
+        fields = ["teacher", "students"]
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        match instance:
+            case Teacher():
+                representation["teacher"] = TeacherSerializer(instance.teacher).data
+            case Student():
+                representation["students"] = StudentSerializer(
+                    instance.students.all(), many=True
+                ).data
+            case _:
+                representation["details"] = "Unknown instance type"
+        return representation
