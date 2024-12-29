@@ -1,6 +1,6 @@
-from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
 
 from .managers import CustomUserManager
 
@@ -15,16 +15,16 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     role = models.CharField(
         max_length=20,
         choices=[
-            ('teacher', 'Teacher'),
-            ('student', 'Student'),
-            ('admin', 'Admin'),
-            ('moderator', 'Moderator'),
+            ("teacher", "Teacher"),
+            ("student", "Student"),
+            ("admin", "Admin"),
+            ("moderator", "Moderator"),
         ],
-        default='student'
+        default="student",
     )
 
     objects = CustomUserManager()
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     def __str__(self):

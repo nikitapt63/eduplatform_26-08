@@ -4,7 +4,7 @@ from django.contrib.auth.models import BaseUserManager
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None):
         if not email:
-            raise ValueError('Email необходим для создания пользователя.')
+            raise ValueError("Email необходим для создания пользователя.")
         email = self.normalize_email(email)
         user = self.model(email=email)
         user.set_password(password)

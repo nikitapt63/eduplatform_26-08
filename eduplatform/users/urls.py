@@ -1,7 +1,12 @@
 from django.urls import include, path, re_path
 from rest_framework.routers import SimpleRouter
 
-from .endpoints import CustomUserViewSetAPI, StudentViewSetAPI, TeacherViewSetAPI, TeacherStudentListAPIView
+from .endpoints import (
+    CustomUserViewSetAPI,
+    StudentViewSetAPI,
+    TeacherStudentListAPIView,
+    TeacherViewSetAPI,
+)
 
 router = SimpleRouter()
 router.register("users", CustomUserViewSetAPI)

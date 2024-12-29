@@ -1,9 +1,14 @@
+from courses.models import Group
 from rest_framework.generics import ListAPIView
 from rest_framework.viewsets import ModelViewSet
 
 from .models import CustomUser, Student, Teacher
-from .serializers import CustomUserSerializer, StudentSerializer, TeacherSerializer, TeacherStudentSerializer
-from courses.models import Group
+from .serializers import (
+    CustomUserSerializer,
+    StudentSerializer,
+    TeacherSerializer,
+    TeacherStudentSerializer,
+)
 
 
 class CustomUserViewSetAPI(ModelViewSet):

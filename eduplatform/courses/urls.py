@@ -5,14 +5,17 @@ from .endpoints import (
     AnswerViewsetAPI,
     ArticleViewsetAPI,
     CompletedTestViewsetAPI,
+    CourseRecommendationListAPIView,
     CourseViewsetAPI,
+    GroupStudentListAPIView,
     GroupViewsetAPI,
     ImageViewSetAPI,
     QuestionViewsetAPI,
     SpecializationViewsetAPI,
+    StudentCoursesListAPIView,
+    TeacherRecommendationListAPIView,
     TestViewsetAPI,
-    TopicViewsetAPI, StudentCoursesListAPIView, GroupStudentListAPIView, TeacherRecommendationListAPIView,
-    CourseRecommendationListAPIView,
+    TopicViewsetAPI,
 )
 
 router = SimpleRouter()

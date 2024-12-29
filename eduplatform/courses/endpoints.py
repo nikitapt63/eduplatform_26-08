@@ -1,8 +1,7 @@
-from django.shortcuts import get_object_or_404
 from django.db.models import Q, Subquery
+from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListAPIView
 from rest_framework.viewsets import ModelViewSet
-
 from users.models import Student, Teacher
 from users.serializers import StudentSerializer, TeacherSerializer
 
